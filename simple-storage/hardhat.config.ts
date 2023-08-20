@@ -1,15 +1,13 @@
-require("@nomicfoundation/hardhat-toolbox")
-require("dotenv").config()
-require("@nomicfoundation/hardhat-verify")
-require("./tasks/block-number")
-require("hardhat-gas-reporter")
-require("solidity-coverage")
+import "@nomicfoundation/hardhat-toolbox"
+import "dotenv/config"
+import "@nomicfoundation/hardhat-verify"
+import "./tasks/block-number"
+import "hardhat-gas-reporter"
+import "solidity-coverage"
+import "@nomicfoundation/hardhat-ethers"
+import "@typechain/hardhat"
 
-const {
-    SEPOLIA_RPC_URL = "default",
-    PRIVATE_KEY = "key",
-    COINMARKETCAP_API_KEY = "key",
-} = process.env
+const { SEPOLIA_RPC_URL, PRIVATE_KEY, COINMARKETCAP_API_KEY } = process.env
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
