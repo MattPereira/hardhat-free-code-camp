@@ -45,7 +45,7 @@ async function verify(contractAddress: string, args: any[]) {
     }
 }
 
-async function waitForBlocks(numBlocks) {
+async function waitForBlocks(numBlocks: number) {
     const currentBlock = await ethers.provider.getBlockNumber()
     const targetBlock = currentBlock + numBlocks
     console.log("currentBlock:", currentBlock)
