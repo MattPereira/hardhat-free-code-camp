@@ -1,5 +1,8 @@
-https://github.com/smartcontractkit/full-blockchain-solidity-course-js
+## Bookmark
 
-Resources
+https://youtu.be/gyMwXuJrbJQ?t=45189
 
-- [Best README Template](https://github.com/othneildrew/Best-README-Template)
+## Resources
+
+- https://github.com/smartcontractkit/full-blockchain-solidity-course-js
+- Best README Template : https://github.com/othneildrew/Best-README-Template
