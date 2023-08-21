@@ -10,7 +10,7 @@ cache
 artifacts
 
 # Dev utilities
-gas-report.txt
 coverage
 typechain
 typechain-types
+deployments
