@@ -1,8 +1,15 @@
 ## Bookmark
 
-- https://youtu.be/gyMwXuJrbJQ?t=45189
+#### Lesson 9
+
+- https://youtu.be/gyMwXuJrbJQ?t=49264
 
 ## Resources
 
+#### Tutorial Repository
+
 - https://github.com/smartcontractkit/full-blockchain-solidity-course-js
+
+#### Other Helpful Links
+
 - Best README Template : https://github.com/othneildrew/Best-README-Template
