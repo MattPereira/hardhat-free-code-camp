@@ -1,11 +1,11 @@
 require("dotenv").config()
 
-require("@nomiclabs/hardhat-waffle")
+require("@nomicfoundation/hardhat-toolbox")
+require("@nomiclabs/hardhat-solhint")
 
-require("@nomiclabs/hardhat-etherscan")
-require("solidity-coverage")
+// require("hardhat-contract-sizer")
 require("hardhat-gas-reporter")
-require("hardhat-contract-sizer")
+require("solidity-coverage")
 
 // https://github.com/wighawag/hardhat-deploy-ethers#installation
 require("@nomiclabs/hardhat-ethers") // https://github.com/wighawag/hardhat-deploy#installation
@@ -42,6 +42,11 @@ module.exports = {
         coinmarketcap: COINMARKETCAP_API_KEY,
         token: "ETH",
     },
+    etherscan: {
+        apiKey: {
+            sepolia: ETHERSCAN_API_KEY,
+        },
+    },
     namedAccounts: {
         deployer: {
             default: 0,
@@ -49,5 +54,9 @@ module.exports = {
         player: {
             default: 1,
         },
+    },
+
+    mocha: {
+        timeout: 300000, // 300 seconds max or test fails
     },
 }

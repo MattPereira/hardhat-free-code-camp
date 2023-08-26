@@ -16,7 +16,7 @@ module.exports = async function (hre) {
         vrfCoordinatorV2Address = vrfCoordinatorV2Mock.target
         const txResponse = await vrfCoordinatorV2Mock.createSubscription()
         const txReceipt = await txResponse.wait(1)
-        subscriptionId = txReceipt.logs[0].args.subId
+        subscriptionId = txReceipt.logs[0].args.subId.toString()
         // Fund the subscription
         await vrfCoordinatorV2Mock.fundSubscription(subscriptionId, VRF_SUB_FUND_AMOUNT)
     } else {
@@ -29,7 +29,7 @@ module.exports = async function (hre) {
     const callbackGasLimit = networkConfig[chainId]["callbackGasLimit"]
     const interval = networkConfig[chainId]["interval"]
 
-    const args = [
+    const constructorArgs = [
         vrfCoordinatorV2Address,
         entranceFee,
         gasLane,
@@ -40,14 +40,20 @@ module.exports = async function (hre) {
 
     const raffle = await deploy("Raffle", {
         from: deployer,
-        args: args,
+        args: constructorArgs,
         log: true,
         waitConfirmations: network.config.blockConfirmations || 1,
     })
 
+    // Ensure the Raffle contract is a valid consumer of the VRFCoordinatorV2Mock contract
+    if (developmentChains.includes(network.name)) {
+        const vrfCoordinatorV2Mock = await ethers.getContract("VRFCoordinatorV2Mock")
+        await vrfCoordinatorV2Mock.addConsumer(subscriptionId, raffle.address)
+    }
+
     if (!developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
         log("Verifying contract on Etherscan...")
-        await verify(raffle.address, args)
+        await verify(raffle.address, constructorArgs)
         log("------------------------------------")
     }
 }

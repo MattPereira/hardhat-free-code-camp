@@ -116,7 +116,7 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
      * @dev Once `checkUpkeep` returns true, this function triggers
      *  the Chainlink VRF node being called to generate a random number
      *
-     * @dev the `fullfillRandomWords` function is automatically called once the Chainlink VRF node
+     * @dev then the `fullfillRandomWords` function is automatically called once the Chainlink VRF node
      * returns the random number because of this contract inherting from `VRFConsumerBaseV2`
      *
      * @dev https://docs.chain.link/chainlink-automation/compatible-contracts#performupkeep-function
