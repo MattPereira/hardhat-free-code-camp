@@ -11,7 +11,12 @@ require("@nomiclabs/hardhat-ethers") // https://github.com/wighawag/hardhat-depl
 require("@nomicfoundation/hardhat-ethers")
 require("hardhat-deploy")
 
-const { SEPOLIA_RPC_URL, PRIVATE_KEY, COINMARKETCAP_API_KEY } = process.env
+const {
+    SEPOLIA_RPC_URL,
+    PRIVATE_KEY,
+    COINMARKETCAP_API_KEY,
+    ETHERSCAN_API_KEY,
+} = process.env
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
@@ -33,7 +38,7 @@ module.exports = {
         },
     },
     etherscan: {
-        apiKey: process.env.ETHERSCAN_API_KEY,
+        apiKey: ETHERSCAN_API_KEY,
     },
     gasReporter: {
         enabled: true,
