@@ -12,7 +12,14 @@ require("@nomiclabs/hardhat-ethers") // https://github.com/wighawag/hardhat-depl
 require("@nomicfoundation/hardhat-ethers")
 require("hardhat-deploy") // injects `deployments` and `getNamedAccounts` into hre
 
-const { SEPOLIA_RPC_URL, PRIVATE_KEY, COINMARKETCAP_API_KEY, ETHERSCAN_API_KEY } = process.env
+const {
+    SEPOLIA_RPC_URL,
+    PRIVATE_KEY,
+    COINMARKETCAP_API_KEY,
+    ETHERSCAN_API_KEY,
+    ARBITRUM_RPC_URL,
+    ARB_PRIVATE_KEY,
+} = process.env
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
@@ -32,6 +39,11 @@ module.exports = {
         localhost: {
             url: "http://127.0.0.1:8545/",
             chainId: 31337,
+        },
+        arbitrum: {
+            chainId: 42161,
+            url: ARBITRUM_RPC_URL,
+            accounts: [ARB_PRIVATE_KEY],
         },
     },
     gasReporter: {
