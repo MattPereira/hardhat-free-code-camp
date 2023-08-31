@@ -4,7 +4,8 @@ const inter = Inter({ subsets: ["latin"] })
 
 // import ManualHeader from "../components/ManualHeader"
 import Header from "../components/Header"
-import MoralisProvider from "../components/MoralisProvider"
+import { MoralisProvider } from "../components/MoralisProvider"
+import { NotificationsProvider } from "../components/NotificationsProvider"
 
 export const metadata = {
     title: "Smart Contract Lottery",
@@ -13,13 +14,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <MoralisProvider>
-            <html lang="en">
-                <body className={inter.className}>
-                    <Header />
-                    {children}
-                </body>
-            </html>
-        </MoralisProvider>
+        <html lang="en">
+            <body className={inter.className}>
+                <MoralisProvider>
+                    <NotificationsProvider>
+                        <Header />
+                        {children}
+                    </NotificationsProvider>
+                </MoralisProvider>
+            </body>
+        </html>
     )
 }

@@ -1,7 +1,7 @@
 "use client"
 
-import { MoralisProvider as Provider } from "react-moralis"
+import { MoralisProvider as MyMoralisProvider } from "react-moralis"
 
-export default function MoralisProvider({ children }) {
-    return <Provider initializeOnMount={false}>{children}</Provider>
+export function MoralisProvider({ children }) {
+    return <MyMoralisProvider initializeOnMount={false}>{children}</MyMoralisProvider>
 }
