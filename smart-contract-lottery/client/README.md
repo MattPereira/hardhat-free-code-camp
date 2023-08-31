@@ -1,1 +1,1 @@
-https://youtu.be/gyMwXuJrbJQ?t=65526
+https://youtu.be/gyMwXuJrbJQ?t=67898

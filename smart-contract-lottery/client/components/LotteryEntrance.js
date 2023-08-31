@@ -2,7 +2,7 @@
 
 import { abi, contractAddresses } from "../constants"
 import { useMoralis, useWeb3Contract } from "react-moralis"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 import { ethers } from "ethers"
 import { useNotification } from "web3uikit"
 import classNames from "classnames"
@@ -55,20 +55,20 @@ export default function LotteryEntrance() {
         params: {},
     })
 
-    async function updateUI() {
+    const updateUI = useCallback(async () => {
         const entranceFeeRes = (await getEntranceFee()).toString()
         const numPlayersRes = (await getNumberOfPlayers()).toString()
         const recentWinnerRes = (await getRecentWinner()).toString()
         setEntranceFee(entranceFeeRes)
         setNumPlayers(numPlayersRes)
         setRecentWinner(recentWinnerRes)
-    }
+    }, [getEntranceFee, getNumberOfPlayers, getRecentWinner])
 
     useEffect(() => {
         if (isWeb3Enabled) {
             updateUI()
         }
-    }, [isWeb3Enabled])
+    }, [isWeb3Enabled, updateUI])
 
     const handleSuccess = async function (tx) {
         // this is where we wait to see if the transaction was mined/successfully executed
