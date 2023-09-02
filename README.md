@@ -1,8 +1,8 @@
 ## Bookmark
 
-#### Lesson 10
+[#### Lesson 14](https://github.com/smartcontractkit/full-blockchain-solidity-course-js#lesson-14-hardhat-nfts-everything-you-need-to-know-about-nfts)
 
-- https://youtu.be/gyMwXuJrbJQ?t=59549
+https://youtu.be/gyMwXuJrbJQ?t=73734
 
 ## Resources
 

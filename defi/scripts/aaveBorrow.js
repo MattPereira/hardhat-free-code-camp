@@ -4,6 +4,9 @@ const { networkConfig } = require("../helper-hardhat-config")
 
 /** Script for interactions with Aave
  *
+ * @dev https://docs.aave.com/developers/v/2.0/
+ * @dev https://docs.aave.com/risk/v/aave-v2/asset-risk/risk-parameters
+ *
  *   1. Deposit collateral : ETH / WETH
  *   2. Borrow another asset : DAI
  *   3. Repay the DAI
