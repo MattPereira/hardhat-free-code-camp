@@ -170,6 +170,7 @@ const { developmentChains, networkConfig } = require("../../helper-hardhat-confi
                           i < startingAccountIdx + additionalEntrants;
                           i++
                       ) {
+                          console.log(accounts[i])
                           const accountConnectedRaffle = raffle.connect(accounts[i])
                           await accountConnectedRaffle.enterRaffle({ value: raffleEntranceFee })
                       }
