@@ -6,7 +6,7 @@
 
 ## Video timestamp
 
--   https://youtu.be/gyMwXuJrbJQ?t=75312
+-   https://youtu.be/gyMwXuJrbJQ?t=79324
 
 ## Github repo for lesson
 

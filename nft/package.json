@@ -13,6 +13,7 @@
         "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers",
         "@nomiclabs/hardhat-solhint": "^3.0.1",
         "@openzeppelin/contracts": "^4.9.3",
+        "@pinata/sdk": "^2.1.0",
         "@typechain/ethers-v6": "^0.4.0",
         "@typechain/hardhat": "^8.0.0",
         "chai": "^4.2.0",
@@ -21,6 +22,7 @@
         "hardhat": "^2.17.1",
         "hardhat-deploy": "^0.11.36",
         "hardhat-gas-reporter": "^1.0.9",
+        "path": "^0.12.7",
         "solidity-coverage": "^0.8.4",
         "typechain": "^8.1.0"
     },
