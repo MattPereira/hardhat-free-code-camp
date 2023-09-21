@@ -7,6 +7,7 @@ const networkConfig = {
         callbackGasLimit: "500000", // 500,000
         interval: "30",
         mintFee: "100000000000000000", // 0.1 ETH
+        ethUsdPriceFeed: "0x694AA1769357215DE4FAC081bf1f309aDC325306",
     },
     31337: {
         name: "hardhat",
