@@ -32,9 +32,11 @@ const lowTokenUri =
                   const lowSVG = await dynamicSvgNft.getLowSVG()
                   const highSVG = await dynamicSvgNft.getHighSVG()
                   const priceFeed = await dynamicSvgNft.getPriceFeed()
+                  const tokenCounter = await dynamicSvgNft.getTokenCounter()
                   assert.equal(lowSVG, lowSVGImageuri)
                   assert.equal(highSVG, highSVGimageUri)
                   assert.equal(priceFeed, mockV3Aggregator.target)
+                  assert.equal(tokenCounter.toString(), "0")
               })
           })
 
@@ -47,14 +49,14 @@ const lowTokenUri =
                   )
                   const tokenCounter = await dynamicSvgNft.getTokenCounter()
                   assert.equal(tokenCounter.toString(), "1")
-                  const tokenURI = await dynamicSvgNft.tokenURI(1)
+                  const tokenURI = await dynamicSvgNft.tokenURI(0)
                   assert.equal(tokenURI, highTokenUri)
               })
               it("shifts the token uri to lower when the price doesn't surpass the highvalue", async function () {
                   const highValue = ethers.parseEther("100000000") // $100,000,000 dollar per ether. Maybe in the distant future this test will fail...
                   const txResponse = await dynamicSvgNft.mintNft(highValue)
                   await txResponse.wait(1)
-                  const tokenURI = await dynamicSvgNft.tokenURI(1)
+                  const tokenURI = await dynamicSvgNft.tokenURI(0)
                   assert.equal(tokenURI, lowTokenUri)
               })
           })

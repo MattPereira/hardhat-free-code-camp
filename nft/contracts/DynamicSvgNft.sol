@@ -5,6 +5,7 @@ pragma solidity ^0.8.7;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 import "base64-sol/base64.sol";
+import "hardhat/console.sol";
 
 contract DynamicSvgNft is ERC721 {
     // mint
@@ -35,10 +36,10 @@ contract DynamicSvgNft is ERC721 {
     }
 
     function mintNft(int256 highValue) public {
-        s_tokenCounter += 1; // best practice: update token counter before minting
         s_tokenIdToHighValue[s_tokenCounter] = highValue;
         _safeMint(msg.sender, s_tokenCounter);
         emit CreatedNFT(s_tokenCounter, highValue);
+        s_tokenCounter += 1;
     }
 
     // overriding the _baseURI from ERC721
@@ -49,14 +50,13 @@ contract DynamicSvgNft is ERC721 {
     function tokenURI(uint256 tokenId) public view override returns (string memory) {
         require(_exists(tokenId), "URI query for nonexistent token");
 
-        // string memory imageURI = "placeholder";
-        // data:application/jason;base64
-
-        (, int256 price,,,) = i_priceFeed.latestRoundData();
         string memory imageURI = i_lowImageURI;
+
+        (, int256 price,,,) = i_priceFeed.latestRoundData(); // returns 8 decimals extra
         if (price >= s_tokenIdToHighValue[tokenId]) {
             imageURI = i_highImageURI;
         }
+
         return string(
             abi.encodePacked(
                 _baseURI(),
@@ -64,7 +64,7 @@ contract DynamicSvgNft is ERC721 {
                     bytes(
                         abi.encodePacked(
                             '{"name":"',
-                            name(), // You can add whatever name here
+                            name(),
                             '", "description":"An NFT that changes based on the Chainlink Feed", ',
                             '"attributes": [{"trait_type": "coolness", "value": 100}], "image":"',
                             imageURI,
@@ -90,5 +90,10 @@ contract DynamicSvgNft is ERC721 {
 
     function getTokenCounter() public view returns (uint256) {
         return s_tokenCounter;
+    }
+
+    function getLatestRoundData() public view returns (uint256) {
+        (, int256 price,,,) = i_priceFeed.latestRoundData();
+        return uint256(price);
     }
 }

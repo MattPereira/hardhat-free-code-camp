@@ -31,6 +31,8 @@ module.exports = async function (hre) {
     const { deployer } = await getNamedAccounts()
     const chainId = network.config.chainId
 
+    log("-----------------------------")
+
     // get the IPFS hashes of our images
     if (process.env.UPLOAD_TO_PINATA == "true") {
         tokenUris = await handleTokenUris()
@@ -55,7 +57,6 @@ module.exports = async function (hre) {
         subscriptionId = networkConfig[chainId].subscriptionId
     }
 
-    log("-----------------------------")
     const constructorArgs = [
         vrfCoordinatorV2Address,
         subscriptionId,
@@ -78,11 +79,12 @@ module.exports = async function (hre) {
         await vrfCoordinatorV2Mock.addConsumer(subscriptionId, randomIpfsNft.address)
     }
 
-    log("-----------------------------")
+    // verify on etherscan
     if (!developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
-        log("Verifying on Etherscan....")
         await verify(randomIpfsNft.address, constructorArgs)
     }
+
+    log("RANDOM IPFS NFT DEPLOYED!")
 }
 
 /**

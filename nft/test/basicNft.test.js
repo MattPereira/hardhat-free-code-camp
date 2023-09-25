@@ -32,6 +32,7 @@ const { developmentChains, networkConfig } = require("../helper-hardhat-config")
 
           describe("mint", function () {
               it("allows collectors to mint NFTs", async function () {
+                  console.log("COLECTOOOR", collector)
                   const collectorSigner = await ethers.getSigner(collector)
                   const basicNftAsCollector = await basicNft.connect(collectorSigner)
                   await basicNftAsCollector.mintNft()
@@ -60,7 +61,7 @@ const { developmentChains, networkConfig } = require("../helper-hardhat-config")
                   const tokenUri = await basicNft.tokenURI(0)
                   assert.equal(
                       tokenUri,
-                      "ipfs://bafybeig37ioir76s7mg5oobetncojcm3c3hxasyd4rvid4jqhy4gkaheg4/?filename=0-PUG.json"
+                      "ipfs://bafybeig37ioir76s7mg5oobetncojcm3c3hxasyd4rvid4jqhy4gkaheg4"
                   )
               })
 

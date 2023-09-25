@@ -10,6 +10,7 @@ module.exports = async function (hre) {
     const { getNamedAccounts, deployments } = hre
     const { deploy, log } = deployments
     const { deployer } = await getNamedAccounts()
+    log("-----------------------------")
 
     if (developmentChains.includes(network.name)) {
         log("Local network detected! Deploying mocks...")
@@ -24,8 +25,7 @@ module.exports = async function (hre) {
             log: true,
             args: [DECIMALS, INTIIAL_PRICE],
         })
-        log("Mocks Deployed!")
-        log("------------------------------------")
+        log("MOCKS DEPLOYED!")
     }
 }
 

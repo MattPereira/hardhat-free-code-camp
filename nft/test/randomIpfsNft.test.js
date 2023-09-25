@@ -19,6 +19,7 @@ const { developmentChains, networkConfig } = require("../helper-hardhat-config")
               collector = (await getNamedAccounts()).collector // returns address only
               await deployments.fixture(["mocks", "randomipfs"]) // fixtures are declared at bottom of deploy scripts
               nftContract = await ethers.getContract("RandomIpfsNft", deployer)
+              // deploy vrf coordinator so deployer can impersonate for local testing
               vrfCoordinatorV2Mock = await ethers.getContract("VRFCoordinatorV2Mock", deployer)
               mintFee = await nftContract.getMintFee()
           })

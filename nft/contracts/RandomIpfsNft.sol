@@ -88,17 +88,16 @@ contract RandomIpfsNft is VRFConsumerBaseV2, ERC721URIStorage, Ownable {
     function fulfillRandomWords(uint256 requestId, uint256[] memory randomWords) internal override {
         // grab the requester from the mapping so chainlink node doesnt get the NFT lulz
         address dogOwner = s_requestIdToSender[requestId];
-        uint256 newTokenId = s_tokenCounter;
         // what does NFT look like?
         uint256 moddedRng = randomWords[0] % MAX_CHANCE_VALUE; // 0 - 99
         // 0 - 9 => pug (10%)
         // 10 - 39 => shiba (30%)
         // 40 - 99 => st bernard (60%)
         Breed dogBreed = getBreedFromModdedRng(moddedRng);
-        s_tokenCounter += 1;
-        _safeMint(dogOwner, newTokenId);
-        _setTokenURI(newTokenId, s_dogTokenUris[uint256(dogBreed)]);
+        _safeMint(dogOwner, s_tokenCounter);
+        _setTokenURI(s_tokenCounter, s_dogTokenUris[uint256(dogBreed)]);
         emit NftMinted(dogBreed, dogOwner);
+        s_tokenCounter += 1;
     }
 
     function withdraw() public onlyOwner {

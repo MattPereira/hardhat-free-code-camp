@@ -8,6 +8,8 @@ module.exports = async function (hre) {
     const { deploy, log } = deployments
     const { deployer } = await getNamedAccounts()
 
+    log("-----------------------------")
+
     const chainId = network.config.chainId
     let ethUsdPriceFeedAddress
 
@@ -17,11 +19,10 @@ module.exports = async function (hre) {
     } else {
         ethUsdPriceFeedAddress = networkConfig[chainId].ethUsdPriceFeed
     }
-    log("-----------------------------")
     const lowSVG = await fs.readFileSync("./images/dynamicNft/frown.svg", { encoding: "utf-8" })
     const highSVG = await fs.readFileSync("./images/dynamicNft/happy.svg", { encoding: "utf-8" })
 
-    args = [ethUsdPriceFeedAddress, lowSVG, highSVG]
+    const args = [ethUsdPriceFeedAddress, lowSVG, highSVG]
     const dynamicSvgNft = await deploy("DynamicSvgNft", {
         from: deployer,
         args: args,
@@ -30,9 +31,10 @@ module.exports = async function (hre) {
     })
 
     if (!developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
-        log("Verifying on Etherscan....")
-        await verify(dynamicSvgNft.address, constructorArgs)
+        await verify(dynamicSvgNft.address, args)
     }
+
+    log("DYNAMIC SVG NFT DEPLOYED!")
 }
 
 module.exports.tags = ["all", "dynamicsvg", "main"]

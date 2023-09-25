@@ -16,11 +16,12 @@ module.exports = async function (hre) {
         waitConfirmations: network.config.blockConfirmations || 1,
     })
 
+    // verify on etherscan
     if (!developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
-        log("Verifying on Etherscan....")
         await verify(basicNft.address, constructorArgs)
     }
-    log("-----------------------------")
+
+    log("BASIC NFT DEPLOYED!")
 }
 
-module.exports.tags = ["all", "basicNft"]
+module.exports.tags = ["all", "basicNft", "main"]
