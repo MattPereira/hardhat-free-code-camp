@@ -25,6 +25,15 @@ let tokenUris = [
 
 const FUND_AMOUNT = ethers.parseUnits("10", "ether") // 10 LINK
 
+/** Deploy the random ipfs nft contract
+ *
+ * OPTIONS FOR IPFS STORAGE:
+ * 1. with our own IPFS node -> https://docs.ipfs.tech/
+ * 2. pinata -> https://docs.pinata.cloud/docs
+ * 3. nft.storage -> https://nft.storage/docs/
+ *
+ */
+
 module.exports = async function (hre) {
     const { getNamedAccounts, deployments } = hre
     const { deploy, log } = deployments
@@ -37,10 +46,6 @@ module.exports = async function (hre) {
     if (process.env.UPLOAD_TO_PINATA == "true") {
         tokenUris = await handleTokenUris()
     }
-
-    // 1. with our own IPFS node -> https://docs.ipfs.tech/
-    // 2. pinata -> https://docs.pinata.cloud/docs
-    // 3. nft.storage -> https://nft.storage/docs/
 
     let vrfCoordinatorV2Address, subscriptionId
 
@@ -87,6 +92,8 @@ module.exports = async function (hre) {
     log("RANDOM IPFS NFT DEPLOYED!")
 }
 
+module.exports.tags = ["all", "randomipfs", "main"]
+
 /**
  * @returns {string[]} an array of IPFS hashes to upload to the RandomIpfsNft contract
  */
@@ -112,5 +119,3 @@ async function handleTokenUris() {
     console.log(tokenUris)
     return tokenUris
 }
-
-module.exports.tags = ["all", "randomipfs", "main"]

@@ -6,7 +6,7 @@ require("dotenv").config()
 const { PINATA_API_KEY, PINATA_API_SECRET } = process.env
 const pinata = new pinataSDK(PINATA_API_KEY, PINATA_API_SECRET)
 
-// STEP 1: store the images in IPFS
+// STEP 1: store the images in IPFS first so that we can get the IPFS hashes for step 2
 // STEP 2: store the tokenURI metadata in IPFS (inludes the IPFS hashes of the images from step 1)
 
 /**
@@ -20,7 +20,7 @@ const pinata = new pinataSDK(PINATA_API_KEY, PINATA_API_SECRET)
 async function storeImages(relativePathToImages) {
     const fullImagesPath = path.resolve(relativePathToImages)
     const files = fs.readdirSync(fullImagesPath)
-    let responses = []
+    const responses = []
     console.log("Uploading to IPFS...")
     for (fileIndex in files) {
         console.log(`Uploading ${files[fileIndex]}...`)

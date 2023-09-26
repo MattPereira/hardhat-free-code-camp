@@ -14,7 +14,7 @@
 
 ## Video timestamp
 
--   https://youtu.be/gyMwXuJrbJQ?t=84104
+-   https://youtu.be/gyMwXuJrbJQ?t=85027
 
 ## Github repo for lesson
 
