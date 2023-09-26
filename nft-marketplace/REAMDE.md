@@ -1,0 +1,13 @@
+# NFT Marketplace
+
+## Create a decentralized NFT marketplace
+
+1. `listItem`: List NFTs on the marketplace
+2. `buyItem`: Buy NFTs from the marketplace
+3. `cancelItem`: Cancel a listing
+4. `updateListing`: Update price
+5. `withdrawProceeds`: Withdraw payment for my bought NFTs
+
+## Bookmark
+
+-   https://youtu.be/gyMwXuJrbJQ?t=86675
