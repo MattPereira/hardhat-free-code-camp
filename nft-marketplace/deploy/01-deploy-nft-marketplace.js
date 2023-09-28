@@ -9,7 +9,7 @@ module.exports = async function (hre) {
 
     log("-----------------------------")
     const args = []
-    const basicNft = await deploy("BasicNft", {
+    const basicNft = await deploy("NftMarketplace", {
         from: deployer,
         args: args,
         log: true,
@@ -21,7 +21,7 @@ module.exports = async function (hre) {
         await verify(basicNft.address, args)
     }
 
-    log("BASIC NFT DEPLOYED!")
+    log("NFT MARKETPLACE DEPLOYED!")
 }
 
-module.exports.tags = ["all", "basicNft", "main"]
+module.exports.tags = ["all", "marketplace"]
